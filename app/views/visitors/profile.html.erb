@@ -1,0 +1,62 @@
+<body class="page-header-fixed page-quick-sidebar-over-content ">
+
+<!-- Notification Message -->
+<% if flash[:notice_content] %>
+    <div class="alert alert-<%= flash[:notice_type] %> alert-dismissible" role="alert" style="margin-bottom: 0px;">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <strong><%= flash[:notice_content] %></strong>
+    </div>
+<% end %>
+<!-- // ENd Notification Message -->
+
+<div class="page-container">
+  <div class="page-content">
+    <div class="row">
+      <div class="col-md-3">
+      </div>
+      <div class="col-md-6">
+        <form role="form" action="#">
+          <div class="form-group">
+            <h3>Profile Page</h3>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Name</label>
+            <input type="text" placeholder="John Doe" class="form-control" value="<%= @user.name %>"/>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Email</label>
+            <input type="email" placeholder="user@gmail.com" class="form-control" value="<%= @user.email %>"/>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Phone Number</label>
+            <input type="text" placeholder="+1234567890 DEMO" class="form-control" value="<%= @user.phone %>"/>          </div>
+          <div class="form-group">
+            <label class="control-label">Location</label>
+            <input type="text" placeholder="Location Area" class="form-control" value="<%= @user.location %>"/>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Party Size</label>
+            <input type="text" placeholder="Party Size" class="form-control" value="<%= @user.party_size %>"/>
+          </div>
+          <div class="form-group">
+            <label class="control-label">New Password</label>
+            <input type="password" placeholder="Type New Password" class="form-control"/>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Confirm Password</label>
+            <input type="password" placeholder="Retype Password" class="form-control"/>
+          </div>
+
+          <div class="margiv-top-10">
+            <a href="#" class="btn green">
+              <i class="fa fa-save"></i> Update Profile </a>
+            <a href="<%= root_path %>" class="btn default">
+              <i class="fa fa-arrow-circle-o-left"></i> Cancel </a>
+          </div>
+          <div class="form-group">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

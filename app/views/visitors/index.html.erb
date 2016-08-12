@@ -1,0 +1,55 @@
+<body class="page-header-fixed page-quick-sidebar-over-content ">
+
+<!-- Notification Message -->
+<% if flash[:notice_content] %>
+    <div class="alert alert-<%= flash[:notice_type] %> alert-dismissible" role="alert" style="margin-bottom: 0px;">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <strong><%= flash[:notice_content] %></strong>
+    </div>
+<% end %>
+<!-- // ENd Notification Message -->
+
+<div class="page-container">
+  <div class="page-content">
+    <div class="row">
+      <div class="page-title" style="float: right; margin-right: 50px;">
+        <a href="<%= create_path %>" class="btn blue"> <i class="fa fa-plus-circle"></i> &nbsp; Create New </a>
+      </div>
+      <div class="col-md-12">
+        <div class="portlet box blue-hoki">
+          <div class="portlet-title">
+            <div class="caption">
+              <i class="fa fa-users"></i> User List Table
+            </div>
+            <div class="tools">
+            </div>
+          </div>
+          <div class="portlet-body">
+            <table class="table table-striped table-bordered table-hover" id="sample_1">
+              <thead>
+              <tr>
+                <th> Name </th>
+                <th> Email </th>
+                <th> Phone Number </th>
+                <th> Location </th>
+                <th> Party Size </th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @user_list.each do |userItem| %>
+              <tr>
+                <td> <%= userItem.name %> </td>
+                <td> <%= userItem.email %> </td>
+                <td> <%= userItem.phone %> </td>
+                <td> <%= userItem.location %> </td>
+                <td> <%= userItem.party_size %> </td>
+              </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

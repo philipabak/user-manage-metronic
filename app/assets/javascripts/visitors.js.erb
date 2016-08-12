@@ -1,0 +1,44 @@
+//
+//= require jquery.dataTables.min
+//= require dataTables.tableTools.min
+//= require dataTables.bootstrap
+
+//= require table-advanced
+
+//= require_self
+//
+
+jQuery(document).ready(function() {
+  Metronic.init(); // init metronic core components
+  Layout.init(); // init current layout
+  QuickSidebar.init() // init quick sidebar
+  TableAdvanced.init();
+
+  // check email for sign up
+  $('#signup_button').click(function(){
+
+    var validator = $('.register-form-create').validate();
+    alert(validator.form());
+    if(validator.form()) {
+      var email = $('#signup_email').val();
+
+      $.ajax({
+        url: '/check_email',
+        type: 'POST',
+        data: {email: email},
+        success: function (result) {
+          if(result.email != 'null'){
+            $('#signup_alert').css('display', 'block');
+            return false;
+          } else{
+            $('.register-form-create').submit();
+          }
+          return false;
+        }
+      });
+
+    }
+  });
+
+});
+

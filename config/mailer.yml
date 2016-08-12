@@ -1,0 +1,36 @@
+# ActionMailer Configuration
+development:
+  default_url_options:
+    host: 'localhost'
+    port: 3000
+  delivery_method: :smtp
+  raise_delivery_errors: true
+  smtp_settings:
+    address: 'smtp.gmail.com'
+    port: 587
+    user_name: ''
+    password: ''
+    authentication: 'plain'
+    enable_starttls_auto: true
+  default_options:
+    from: ''
+    to: ['']
+
+
+production:
+
+  default_url_options:
+    host: ''
+  delivery_method: :smtp
+  raise_delivery_errors: false
+  smtp_settings:
+    address: 'smtp.gmail.com'
+    port: 25
+    user_name: ''
+    password: ''
+    authentication: login
+    enable_starttls_auto: true
+  default_options:
+    from: ''
+    to: ['']
+

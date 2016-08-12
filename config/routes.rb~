@@ -1,0 +1,78 @@
+Rails.application.routes.draw do
+  # devise_for :users, controllers: {
+  #     registrations: 'registrations',
+  #     :omniauth_callbacks => 'callbacks'
+  # }
+
+  # resources :users
+
+  # post 'visitors/create' => 'visitors#create'
+
+  #=== Root routes ===#
+
+  root to: 'visitors#index'
+
+  #=== Visitors routes ===#
+
+  resources :visitors, controller: 'visitors' do
+    collection do
+      get 'makeClothesFit' => 'visitors#makeClothesFit'
+      get 'userStatus' => 'visitors#userStatus'
+      get 'checkStatus' => 'visitors#checkStatus'
+
+      post 'signup_primary' => 'visitors#signup_primary'
+
+      get 'complete' => 'visitors#complete'
+      get 'complete/:confirmation_token' => 'visitors#complete'
+
+      get 'changepassword' => 'visitors#changepassword'
+      get 'changepassword/:forgetpassword_token' => 'visitors#changepassword'
+      post 'do_changepassword' => 'visitors#do_changepassword'
+
+      post 'confirmation' => 'visitors#confirmation'
+
+      get 'refer' => 'visitors#refer'
+
+      post 'signin' => 'visitors#signin'
+
+      get 'signout' => 'visitors#signout'
+
+      post 'check_user' => 'visitors#check_user'
+
+      post 'check_verification' => 'visitors#check_verification'
+      post 'resend_email' => 'visitors#resend_email'
+
+      get 'contact' => 'visitors#contact'
+      post 'sendemail_contact' => 'visitors#sendemail_contact'
+
+      get 'policy' => 'visitors#policy'
+
+      post 'sendemail_forgetpassword' => 'visitors#sendemail_forgetpassword'
+
+      post 'check_user_forgetpassword' => 'visitors#check_user_forgetpassword'
+
+      # get '*unmatched_route', :to => 'application#raise_not_found!'
+    end
+  end
+
+  #=== Admin root routes ===#
+
+  get 'admins' => 'admins#index'
+
+  #=== Admin routes ===#
+
+  resources :admins, controller: 'admins' do
+    collection do
+      get 'dashboard' => 'admins#index'
+      post 'downloaddb' => 'admins#downloaddb'
+    end
+  end
+
+  #make this your last route.
+  # get '*unmatched_route', :to => 'application#raise_not_found!'
+
+  unless Rails.application.config.consider_all_requests_local
+    # get '*not_found', to: 'visitors#redirect', :format => false
+  end
+
+end

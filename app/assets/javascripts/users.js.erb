@@ -1,0 +1,82 @@
+//
+//= require jquery.uniform.min
+//= require jquery.validate.min
+//= require jquery.backstretch.min
+
+//= require login-soft
+
+//= require_self
+//
+
+jQuery(document).ready(function() {
+  Metronic.init(); // init metronic core components
+  Layout.init(); // init current layout
+  QuickSidebar.init() // init quick sidebar
+  Login.init();
+
+  // init background slide images
+  $.backstretch([
+        "/assets/bg/1.jpg",
+        "/assets/bg/2.jpg",
+        "/assets/bg/3.jpg",
+        "/assets/bg/4.jpg"
+      ], {
+        fade: 1000,
+        duration: 8000
+      }
+  );
+
+  // check user if exist
+  $('#signin_button').click(function(){
+
+    var validator = $('.login-form').validate();
+    if(validator.form()) {
+      var email = $('#signin_email').val();
+      var password = $('#signin_password').val();
+      var location = $('#signin_location').val();
+
+      $.ajax({
+        url: '/check_user',
+        type: 'POST',
+        data: {email: email, password: password, location: location},
+        success: function (result) {
+          if(result.email == 'null'){
+            $('#signin_alert').html('<span>Invalid email or password.</span>');
+            $('#signin_alert').css('display', 'block');
+            return false;
+          } else{
+            $('.login-form').submit();
+          }
+          return false;
+        }
+      });
+
+    }
+  });
+
+  // check email for sign up
+  $('#signup_button').click(function(){
+
+    var validator = $('.register-form').validate();
+    if(validator.form()) {
+      var email = $('#signup_email').val();
+
+      $.ajax({
+        url: '/check_email',
+        type: 'POST',
+        data: {email: email},
+        success: function (result) {
+          if(result.email != 'null'){
+            $('#signup_alert').css('display', 'block');
+            return false;
+          } else{
+            $('.register-form').submit();
+          }
+          return false;
+        }
+      });
+
+    }
+  });
+
+});
